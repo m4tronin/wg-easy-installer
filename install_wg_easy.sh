@@ -1,21 +1,5 @@
 #!/bin/bash
 
-# Установка Docker
-echo "Устанавливаем Docker..."
-curl -sSL https://get.docker.com | sh
-
-# Проверяем, существует ли группа docker, и создаем ее, если нужно
-if ! getent group docker > /dev/null; then
-    sudo groupadd docker
-fi
-
-# Добавляем текущего пользователя в группу docker
-sudo usermod -aG docker $(whoami)
-
-# Перезагрузка shell для применения групповых изменений
-echo "Перезагрузка для применения настроек Docker..."
-exec su -l $USER
-
 # Генерация случайного пароля
 PASSWORD_LENGTH=12
 PASSWORD=$(openssl rand -base64 $PASSWORD_LENGTH | cut -c1-$PASSWORD_LENGTH)
@@ -30,7 +14,7 @@ SERVER_IP=$(curl -s ifconfig.me)
 echo "Запускаем WG Easy с конфигурацией..."
 docker run --detach \
   --name wg-easy \
-  --env LANG=en \
+  --env LANG=de \
   --env WG_HOST=$SERVER_IP \
   --env PASSWORD_HASH="$PASSWORD_HASH" \
   --env PORT=51821 \
