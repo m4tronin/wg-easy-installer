@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Установка Docker, если он не установлен
+if ! command -v docker &> /dev/null; then
+    echo "Docker не найден. Устанавливаем Docker..."
+    curl -sSL https://get.docker.com | sh
+fi
+
 # Генерация случайного пароля
 PASSWORD_LENGTH=12
 PASSWORD=$(openssl rand -base64 $PASSWORD_LENGTH | cut -c1-$PASSWORD_LENGTH)
@@ -14,7 +20,7 @@ SERVER_IP=$(curl -s ifconfig.me)
 echo "Запускаем WG Easy с конфигурацией..."
 docker run --detach \
   --name wg-easy \
-  --env LANG=de \
+  --env LANG=en \
   --env WG_HOST=$SERVER_IP \
   --env PASSWORD_HASH="$PASSWORD_HASH" \
   --env PORT=51821 \
