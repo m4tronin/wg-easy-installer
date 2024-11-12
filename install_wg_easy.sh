@@ -1,9 +1,12 @@
 #!/bin/bash
 
+# Обновление списка пакетов
+echo "Обновляем список пакетов..."
+apt update && apt upgrade -y
+
 # Установка Docker, если он не установлен
 if ! command -v docker &> /dev/null; then
     echo "Docker не найден. Устанавливаем Docker..."
-    apt update
     apt install -y docker.io
     systemctl start docker
     systemctl enable docker
@@ -23,7 +26,7 @@ SERVER_IP=$(curl -s ifconfig.me)
 echo "Запускаем WG Easy с конфигурацией..."
 docker run --detach \
   --name wg-easy \
-  --env LANG=de \
+  --env LANG=en \
   --env WG_HOST=$SERVER_IP \
   --env PASSWORD_HASH="$PASSWORD_HASH" \
   --env PORT=51821 \
@@ -43,4 +46,3 @@ echo "Установка завершена!"
 echo "Вы можете получить доступ к панели WG Easy по адресу:"
 echo "wg-interface: http://$SERVER_IP:51821"
 echo "Пароль администратора: $PASSWORD"
-
