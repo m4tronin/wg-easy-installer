@@ -26,11 +26,12 @@ SERVER_IP=$(curl -s ifconfig.me)
 echo "Запускаем WG Easy с конфигурацией..."
 docker run --detach \
   --name wg-easy \
-  --env LANG=en \
+  --env LANG=ru \
   --env WG_HOST=$SERVER_IP \
   --env PASSWORD_HASH="$PASSWORD_HASH" \
   --env PORT=51821 \
   --env WG_PORT=51820 \
+  --env WG_DEFAULT_ADDRESS="10.7.0.0/24" \
   --volume ~/.wg-easy:/etc/wireguard \
   --publish 51820:51820/udp \
   --publish 51821:51821/tcp \
