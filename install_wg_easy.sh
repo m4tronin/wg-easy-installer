@@ -2,7 +2,7 @@
 
 # Обновление списка пакетов
 echo "Обновляем список пакетов..."
-#apt update && apt upgrade -y
+apt update && apt upgrade -y
 
 # Установка Docker, если он не установлен
 if ! command -v docker &> /dev/null; then
