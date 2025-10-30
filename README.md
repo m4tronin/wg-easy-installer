@@ -8,7 +8,7 @@
 Чтобы быстро установить WG Easy, выполните следующую команду в терминале вашего сервера Ubuntu:
 
 ```bash
-bash <(curl -sSL https://raw.githubusercontent.com/mrPain042/wg-easy-installer/main/install_wg_easy.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/m4tronin/wg-easy-installer/refs/heads/main/install_wg_easy.sh)
 ```
 
 ### Этот скрипт выполняет следующие действия:
